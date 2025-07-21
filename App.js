@@ -9,16 +9,14 @@ const generateCalendarDays = () => {
 const today = new Date();
 const year = today.getFullYear();
 const month = today.getMonth();
-const firstDay = new Date(year, month, 1).getDay(); // Weekday index
-const totalDays = new Date(year, month + 1, 0).getDate(); // Last day of month
+const firstDay = new Date(year, month, 1).getDay();
+const totalDays = new Date(year, month + 1, 0).getDate();
 const dayArray = [];
-// Add blank items for alignment
 for (let i = 0; i < firstDay; i++) {
 dayArray.push({ key: `blank-${i}`, label: '', isToday: false });
 }
-// Add real days
 for (let i = 1; i <= totalDays; i++) {
-    const isToday = i === today.getDate();
+const isToday = i === today.getDate();
 dayArray.push({ key: `day-${i}`, label: i.toString(), isToday });
 }
 setDays(dayArray);
@@ -40,7 +38,14 @@ data={days}
 numColumns={7}
 renderItem={({ item }) => (
 <View style={styles.dayCell}>
-<Text style={[styles.dayText,item.isToday && styles.todayText]}>{item.label} </Text>
+<Text
+style={[
+styles.dayText,
+item.isToday && styles.todayText
+]}
+>
+{item.label}
+</Text>
 </View>
 )}
 />
